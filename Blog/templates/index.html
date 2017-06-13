@@ -1,7 +1,7 @@
 {% include '_header.html' %}
   <table>
   {% for post in posts %}
-    <tr>{{ post.post_title }} {{ post.post_text }}</tr><br />
+    <tr>{{ post.title }} {{ post.text }} {{ post.date }}</tr><br />
   {% endfor %}
   </table>
 {% include '_footer.html' %}
