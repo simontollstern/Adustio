@@ -77,13 +77,13 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        ### The commented rows below is tested and configured for connecting to a MySQL database. If theyre uncommented and you dont have a running MySQL server you wont be able to start the server, therefore theyre temporarily commented.
-        #'ENGINE': 'django.db.backends.mysql',
+        ### The commented rows below is tested and configured for connecting to a postgreSQL database. If theyre uncommented and you dont have a running postgreSQL server you wont be able to start the server, therefore theyre temporarily commented.
+        #'ENGINE': 'django.db.backends.postgresql',
         #'NAME': 'adustio',
-        #'USER': 'root',
-        #'PASSWORD': '',
+        #'USER': 'postgres',
+        #'PASSWORD': 'qwerty123',
         #'HOST': 'localhost',
-        #'PORT': '3306',
+        #'PORT': '5432',
     }
 }
 
