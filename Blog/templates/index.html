@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Adustio</title>
-  </head>
-  <body>
-    <h1>Root page</h1>
-    <table>
-    {% for post in posts %}
-      <tr>{{ post.post_title }} {{ post.post_text }}</tr><br />
-    {% endfor %}
-    </table>
-  </body>
-</html>
+{% include '_header.html' %}
+  <h1>Root page</h1>
+  <table>
+  {% for post in posts %}
+    <tr>{{ post.post_title }} {{ post.post_text }}</tr><br />
+  {% endfor %}
+  </table>
+{% include '_footer.html' %}
