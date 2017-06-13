@@ -19,6 +19,4 @@ from Blog.views import index
 
 urlpatterns = [
     url(r'^$', index, name='index'),
-    #url(r'^$', displayPosts, name='Posts'),
-    #url(r'^test/', include('Blog.urls')),
 ]
