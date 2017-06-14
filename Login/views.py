@@ -35,9 +35,9 @@ def logout(request):
     auth.logout(request)
     return render_to_response('logout.html')
 
-@login_required()
-def admin(request):
-    return HttpResponseRedirect('/accounts/adminpanel')
+#@login_required()
+#def admin(request):
+#    return HttpResponseRedirect('/accounts/adminpanel')
 
 @login_required()
 def addPost(request):
@@ -55,7 +55,7 @@ def addPostAuth(request):
     title = request.POST.get('title', '')
     text = request.POST.get('text', '')
 
-    b = Post(title=title, text=text)
-    b.save()
+    p = Post(title=title, text=text)
+    p.save()
 
     return HttpResponseRedirect('/accounts/adminpanel')

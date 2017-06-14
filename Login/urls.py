@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from Login.views import login, auth_view, loggedin, invalid_login, logout, admin, addPost, addPostAuth
+from Login.views import login, auth_view, loggedin, invalid_login, logout, addPost, addPostAuth
 
 urlpatterns = [
     url(r'^accounts/login/$', login),
