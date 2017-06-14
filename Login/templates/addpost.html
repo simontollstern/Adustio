@@ -1,0 +1,12 @@
+{% include '_header.html' %}
+
+{% block content %}
+
+<form action="/accounts/addpost/auth" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
+{% include '_footer.html' %}
