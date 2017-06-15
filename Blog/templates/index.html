@@ -1,6 +1,35 @@
 {% include '_header.html' %}
 
   <div class="container">
+    {% for post in posts|slice:":1" %}
+      <div class="row" style="margin-top:10px">
+        <div class="col-sm-4 col-sm-offset-2">
+          <p>FASTPINNAT INLÄGG (bra/dålig ide?)</p>
+        </div>
+      </div>
+      <div class="row" style="margin-bottom:10px">
+        <div class="col-sm-4 col-sm-offset-2" style="background-color:#ccc;height:200px;">
+          <p>YouTube/SoundCloud/Bild här</p>
+        </div>
+        <div class="col-sm-4">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.text }}</p>
+          <i>{{ post.date }}</i>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="container-fluid about" style="margin-bottom:10px">
+    <div class="row">
+      <div class="col-sm-3 col-sm-offset-3">
+        <p>Hej jag heter Adustio osv osv Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc eget ornare ante, at sollicitudin tellus. Mauris mi arcu, fermentum id vulputate a, aliquam vitae ante. Ut aliquet pharetra felis vitae consectetur. Suspendisse a tortor vitae sem iaculis elementum. Aenean ut tincidunt leo, at aliquam sem. Maecenas iaculis porta felis vitae ultricies. Phasellus vestibulum, felis vehicula commodo pulvinar, nunc ex interdum augue, ac sollicitudin eros metus eget est.</p>
+      </div>
+      <div class="col-sm-2" style="background-color:#777;color:#fff;margin-top:10px;">
+        <p>Bild på honom kanske?</p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
     {% for post in posts %}
       <div class="row" style="margin-bottom:10px">
         <div class="col-sm-4 col-sm-offset-2" style="background-color:#ccc;height:200px;">

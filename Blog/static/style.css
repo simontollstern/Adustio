@@ -15,6 +15,10 @@
   font-size: 12px;
 }
 
+.about{
+  background-color: #ccc;
+}
+
 .footer{
   background-color: #333;
   color: #ccc;
