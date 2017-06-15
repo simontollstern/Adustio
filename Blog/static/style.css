@@ -1,6 +1,22 @@
-.header{
-  background:url('images/stock_road.jpg');
+.banner{
+  background:url('images/adustio-banner.jpg');
   height: 300px;
   background-position: center;
   color: #fff;
+}
+
+.banner h1{
+  line-height: 300px;
+  text-align: center;
+  margin: 0;
+}
+
+.banner span{
+  font-size: 12px;
+}
+
+.footer{
+  background-color: #333;
+  color: #ccc;
+  height: 100px;
 }

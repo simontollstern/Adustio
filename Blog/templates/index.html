@@ -1,7 +1,18 @@
 {% include '_header.html' %}
-  <table>
-  {% for post in posts %}
-    <tr>{{ post.title }} {{ post.text }} {{ post.date }}</tr><br />
-  {% endfor %}
-  </table>
+
+  <div class="container">
+    {% for post in posts %}
+      <div class="row" style="margin-bottom:10px">
+        <div class="col-sm-4 col-sm-offset-2" style="background-color:#ccc;height:200px;">
+          <p>YouTube/SoundCloud/Bild här</p>
+        </div>
+        <div class="col-sm-4">
+          <h2>{{ post.title }}</h2>
+          <p>{{ post.text }}</p>
+          <i>{{ post.date }}</i>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
 {% include '_footer.html' %}
