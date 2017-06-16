@@ -1,12 +1,34 @@
-{% include '_header.html' %}
+<!--{% include '_header.html' %}-->
 
 {% block content %}
 
-<h5>Great success</h5>
+<table style="border: 1px red solid" width="800px">
+  <tr>
+    <th>ID</th>
+    <th>Title</th>
+    <th>Text</th>
+    <th>Date</th>
+  </tr>
+  {% for post in posts %}
+  <tr>
+    <td>{{ post.pk }}</td>
+    <td>{{ post.title }}</td>
+    <td>{{ post.text }}</td>
+    <td>{{ post.date }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% for post in posts %}
 
+  <form action="/accounts/deletePost?={{ post.pk }}" method="post">
+    <input type="submit" value="Delete this post" />
+  </form>
+
+  <!--<a href="/accounts/deletepost?id={{ post.pk }}">Delete</a>
+
+  <a href="/accounts/editpost?id={{ post.pk }}">Edit<a/></br>-->
+{% endfor %}
 <p><a href="/accounts/addpost/">Add Post</a></p>
-<p><a href="/accounts/editpost/">Edit Post</a></p>
-<p><a href="/accounts/deletepost/">Delete Post</a></p>
 <p><a href="/accounts/logout/">Logout</a></p>
 
 {% endblock %}

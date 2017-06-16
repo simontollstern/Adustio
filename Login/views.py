@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.template.context_processors import csrf
 from Blog.models import Post
 from django import forms
-from .forms import PostForm
+from .forms import AddPostForm
 
 # handles logins
 def login(request):
@@ -31,7 +31,10 @@ def invalid_login(request):
 #Pages where you are required to be logged in to access them
 @login_required()
 def loggedin(request):
-    return render_to_response('adminpanel.html', {'full_name': request.user.username})
+    return render_to_response('adminpanel.html', {
+            'full_name': request.user.username,
+            'posts': Post.objects.all().order_by("pk"),
+        })
 
 @login_required()
 def logout(request):
@@ -49,7 +52,7 @@ def addPost(request):
         if form.is_valid():
             return HttpResponseRedirect('/accounts/addpost')
     else:
-        form = PostForm()
+        form = AddPostForm()
 
     return render(request, 'addpost.html', {'form': form})
 
@@ -63,3 +66,21 @@ def addPostAuth(request):
     p.save()
 
     return HttpResponseRedirect('/accounts/adminpanel')
+
+#@login_required()
+#def deletePost(request):
+
+
+#@login_required()
+#def deletePostAuth(request):
+
+# Returns blog post data from the database as a string
+"""def index(request):
+    months = []
+    for m in Post.objects.all().order_by('-date'):
+        if m.date.strftime("%B%y") not in months:
+            months.append(m.date.strftime("%B%y"))
+    return render(request, 'adminpanel.html', {
+        'posts': Post.objects.all().order_by('-date'),
+        'months': months,
+    })"""
