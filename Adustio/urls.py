@@ -20,4 +20,5 @@ from Blog.views import index
 urlpatterns = [
     url(r'^$', index, name='index'),
     url(r'^', include('Login.urls')),
+    url(r'^', include('Blog.urls')),
 ]

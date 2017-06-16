@@ -7,25 +7,28 @@ from Blog.models import Post
 from django import forms
 from .forms import PostForm
 
+# handles logins
 def login(request):
     c = {}
     c.update(csrf(request))
     return render_to_response('login.html', c)
 
-def auth_view(request):
+# authenticates the logins
+def login_auth(request):
     username = request.POST.get('username', '')
     password = request.POST.get('password', '')
     user = auth.authenticate(username=username, password=password)
-
     if user is not None:
         auth.login(request, user)
         return HttpResponseRedirect('/accounts/adminpanel')
     else:
         return HttpResponseRedirect('/accounts/invalid')
 
+# happens if login isnt authenticated
 def invalid_login(request):
     return render_to_response('invalid_login.html')
 
+#Pages where you are required to be logged in to access them
 @login_required()
 def loggedin(request):
     return render_to_response('adminpanel.html', {'full_name': request.user.username})
@@ -54,8 +57,9 @@ def addPost(request):
 def addPostAuth(request):
     title = request.POST.get('title', '')
     text = request.POST.get('text', '')
+    date = request.POST.get('date', '')
 
-    p = Post(title=title, text=text)
+    p = Post(title=title, text=text, date=date)
     p.save()
 
     return HttpResponseRedirect('/accounts/adminpanel')

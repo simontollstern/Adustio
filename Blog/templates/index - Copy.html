@@ -1,0 +1,12 @@
+{% include '_header.html' %}
+  <table>
+  {% for post in posts %}
+    <tr>{{ post.title }} {{ post.text }} {{ post.date }} </tr><br />
+  {% endfor %}
+
+  {% for month in months %}
+    <tr>{{ month }}</tr><br />
+  {% endfor %}
+
+  </table>
+{% include '_footer.html' %}

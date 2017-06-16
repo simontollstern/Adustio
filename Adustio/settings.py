@@ -114,7 +114,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Europe/Stockholm'
+#TIME_ZONE = 'Europe/Stockholm'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -130,3 +131,5 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
+
+#LOGIN_URL = '/accounts/adminpanel/'
