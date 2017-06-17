@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.contrib import auth
 from django.contrib.auth.decorators import login_required
@@ -11,7 +11,7 @@ from .forms import AddPostForm
 def login(request):
     c = {}
     c.update(csrf(request))
-    return render_to_response('login.html', c)
+    return render(request, 'login.html', c)
 
 # authenticates the logins
 def login_auth(request):
@@ -26,12 +26,12 @@ def login_auth(request):
 
 # happens if login isnt authenticated
 def invalid_login(request):
-    return render_to_response('invalid_login.html')
+    return render(request, 'invalid_login.html')
 
 #Pages where you are required to be logged in to access them
 @login_required()
 def loggedin(request):
-    return render_to_response('adminpanel.html', {
+    return render(request, 'adminpanel.html', {
             'full_name': request.user.username,
             'posts': Post.objects.all().order_by("pk"),
         })
@@ -39,7 +39,7 @@ def loggedin(request):
 @login_required()
 def logout(request):
     auth.logout(request)
-    return render_to_response('logout.html')
+    return render(request, 'logout.html')
 
 #@login_required()
 #def admin(request):
@@ -48,7 +48,7 @@ def logout(request):
 @login_required()
 def addPost(request):
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = AddPostForm(request.POST)
         if form.is_valid():
             return HttpResponseRedirect('/accounts/addpost')
     else:
@@ -70,17 +70,8 @@ def addPostAuth(request):
 #@login_required()
 #def deletePost(request):
 
+@login_required()
+def deletePostAuth(request, id):
+    Post.objects.get(pk=id).delete()
 
-#@login_required()
-#def deletePostAuth(request):
-
-# Returns blog post data from the database as a string
-"""def index(request):
-    months = []
-    for m in Post.objects.all().order_by('-date'):
-        if m.date.strftime("%B%y") not in months:
-            months.append(m.date.strftime("%B%y"))
-    return render(request, 'adminpanel.html', {
-        'posts': Post.objects.all().order_by('-date'),
-        'months': months,
-    })"""
+    return HttpResponseRedirect('/accounts/adminpanel')

@@ -19,13 +19,11 @@
   {% endfor %}
 </table>
 {% for post in posts %}
-
-  <form action="/accounts/deletePost?={{ post.pk }}" method="post">
+  <form action="/accounts/{{ post.pk }}/" method="post">
+    {% csrf_token %}
     <input type="submit" value="Delete this post" />
   </form>
-
   <!--<a href="/accounts/deletepost?id={{ post.pk }}">Delete</a>
-
   <a href="/accounts/editpost?id={{ post.pk }}">Edit<a/></br>-->
 {% endfor %}
 <p><a href="/accounts/addpost/">Add Post</a></p>

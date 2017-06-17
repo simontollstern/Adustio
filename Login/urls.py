@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from django.contrib import admin
-from Login.views import login, login_auth, loggedin, invalid_login, logout, addPost, addPostAuth
+from Login.views import login, login_auth, loggedin, invalid_login, logout, addPost, addPostAuth, deletePostAuth
 
 urlpatterns = [
     url(r'^accounts/login/$', login),
@@ -9,5 +9,6 @@ urlpatterns = [
     url(r'^accounts/adminpanel/$', loggedin),
     url(r'^accounts/invalid/$', invalid_login),
     url(r'^accounts/addpost/$', addPost),
-    url(r'^accounts/addpost/auth$', addPostAuth)
+    url(r'^accounts/addpost/auth$', addPostAuth),
+    url(r'^accounts/(?P<id>[0-9]+)/$', deletePostAuth)
 ]

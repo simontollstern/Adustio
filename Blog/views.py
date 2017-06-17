@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response, HttpResponse
+from django.shortcuts import render, HttpResponse
 from Blog.models import Post
 from datetime import datetime
 from django.utils import timezone
