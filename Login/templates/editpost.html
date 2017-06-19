@@ -1,0 +1,36 @@
+{% include '_headerLogin.html' %}
+
+{% block content %}
+{% for post in posts %}
+
+<p>{{ form.title.auto_id }}{{ form.text.auto_id }}</p>
+
+<form action="/accounts/adminpanel/editpost/auth/{{ post.pk }}/" method="post">
+    {% csrf_token %}
+    {{ form.title.label_tag }}{{ form.title }}
+    {{ form.text.label_tag }}{{ form.text }}
+    {{ form.youtube.label_tag }}{{ form.youtube }}
+    {{ form.soundcloud.label_tag }}{{ form.soundcloud }}
+    <input type="submit" value="Submit" />
+</form>
+
+<script>
+  window.onload = function insertTitle() {
+    //Inserts the current title from the database into the input field
+    var title = document.getElementById('id_title')
+    title.value = '{{ post.title }}'
+
+    var text = document.getElementById('id_text')
+    text.value = '{{ post.text }}'
+
+    var youtube = document.getElementById('id_youtube')
+    youtube.value = '{{ post.youtube }}'
+
+    var soundcloud = document.getElementById('id_soundcloud')
+    soundcloud.value = '{{ post.soundcloud }}'
+  }
+</script>
+{% endfor %}
+{% endblock %}
+{% include '_footerLogin.html' %}
+<p>{{ post.title }}</p><p>{{ post.text }}</p><p>{{ post.date }}</p>

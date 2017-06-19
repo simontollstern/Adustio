@@ -9,15 +9,17 @@
       </div>
       <div class="row" style="margin-bottom:10px">
         <div class="col-sm-4 col-sm-offset-2" style="background-color:#ccc;height:200px;">
-          <p>YouTube/SoundCloud/Bild här</p>
+
         </div>
         <div class="col-sm-4">
           <h2>{{ post.title }}</h2>
           <p>{{ post.text }}</p>
+          <p>{{ post.youtube }}</p>
           <i>{{ post.date }}</i>
         </div>
       </div>
     {% endfor %}
+
   </div>
   <div class="container-fluid about" style="margin-bottom:10px">
     <div class="row">
@@ -30,18 +32,57 @@
     </div>
   </div>
   <div class="container">
-    {% for post in posts %}
+    {% for post in posts|slice:":5"%}
       <div class="row" style="margin-bottom:10px">
         <div class="col-sm-4 col-sm-offset-2" style="background-color:#ccc;height:200px;">
-          <p>YouTube/SoundCloud/Bild här</p>
+          <div id='youtubeVideo{{ post.pk }}'>
+            <script id="youtubeEmbeddingScript">
+                // If post has a youtube video link in its database field, give it an ID
+                // to the function below and embed it
+                if('{{ post.youtube }}'){
+                  function getId(url) {
+                    var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
+                    var match = url.match(regExp)
+                    if (match && match[2].length == 11) {
+                        return match[2]
+                    } else {
+                        return 'error'
+                    }
+                  }
+                  function youtubeEmbedder(id) {
+                    var videoId = getId(url)
+                    $('#youtubeVideo' + id).html('<iframe width="300" height="115" src="//www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>')
+                  }
+                  var url = '{{ post.youtube }}'
+                  youtubeEmbedder('{{ post.pk }}')
+                }
+                else {
+                }
+            </script>
+          </div>
+            <div class="soundcloud{{ post.pk }}">
+              <script>
+                if('{{ post.soundcloud }}'){
+                  function soundcloudEmbedder(id) {
+                    $('.soundcloud' + id).attr('sc_url', '{{ post.soundcloud }}')
+                    $('.soundcloud' + id).addClass('soundcloudEmbed')
+                  }
+                  soundcloudEmbedder('{{ post.pk }}')
+                }
+                else {
+                }
+              </script>
+            </div>
         </div>
         <div class="col-sm-4">
           <h2>{{ post.title }}</h2>
           <p>{{ post.text }}</p>
+          <p>{{ post.youtube }}</p>
+          <p>{{ post.soundcloud }}</p>
           <i>{{ post.date }}</i>
         </div>
       </div>
     {% endfor %}
+    <a href="#">Older</a>
   </div>
-
 {% include '_footer.html' %}
