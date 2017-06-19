@@ -1,10 +1,25 @@
     <div class="container-fluid footer">
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
-          <p>Länkar till sociala medier osv här kanske?</p>
+          <a href="" id="scroll-btn">
+            <div>
+              <p>^</p>
+            </div>
+          </a>
+
+          <a href="" id="more-btn">
+            <div>
+              <p>Show more</p>
+            </div>
+          </a>
         </div>
       </div>
     </div>
+    {% for post in posts %}
+    <script>
+      document.getElementById('more-btn').setAttribute('href', '/older/' + i)
+    </script>
+    {% endfor %}
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

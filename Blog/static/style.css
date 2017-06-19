@@ -1,5 +1,5 @@
 .banner{
-  background:url('images/adustio-banner.jpg');
+  background:url('images/blog/adustio-banner.jpg');
   height: 300px;
   background-position: center;
   color: #fff;
@@ -23,4 +23,25 @@
   background-color: #333;
   color: #ccc;
   height: 100px;
+}
+
+#scroll-btn, #more-btn{
+  display: inline-block;
+  background-color: #c12626;
+  padding: 10px 16.5px;
+  border-radius: 20px;
+  margin-top: -40px;
+  margin-right: 5px;
+  text-decoration: none!important;
+  transition: all 200ms;
+}
+
+#scroll-btn p, #more-btn p{
+  margin: 0;
+  color: #fff;
+}
+
+#scroll-btn:hover, #more-btn:hover{
+  background-color: #e03131;
+  box-shadow: 0 0 10px #c12626;
 }

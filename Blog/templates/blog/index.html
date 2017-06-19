@@ -4,11 +4,11 @@
     {% for post in posts|slice:":1" %}
       <div class="row" style="margin-top:10px">
         <div class="col-sm-4 col-sm-offset-2">
-          <p>FASTPINNAT INLÄGG (bra/dålig ide?)</p>
+          <p>PINNED</p>
         </div>
       </div>
       <div class="row" style="margin-bottom:10px">
-        <div class="col-sm-4 col-sm-offset-2" style="background-color:#ccc;height:200px;">
+        <div class="col-sm-4 col-sm-offset-2">
 
         </div>
         <div class="col-sm-4">
@@ -39,7 +39,7 @@
   <div class="container">
     {% for post in posts|slice:"0:5" %}
       <div class="row" style="margin-bottom:10px">
-        <div class="col-sm-4 col-sm-offset-2" style="background-color:#ccc;height:200px;">
+        <div class="col-sm-4 col-sm-offset-2">
           <div id='youtubeVideo{{ post.pk }}'>
             <script id="youtubeEmbeddingScript">
                 // If post has a youtube video link in its database field, give it an ID to the function below and embed it
@@ -58,7 +58,7 @@
                   //The id-argument tells the function exactly which <div> it should add the HTML-code to, since all this code is inside a forloop it needs a specific ID which is the Primary Key of the current Post-object.
                   function youtubeEmbedder(id) {
                     var videoId = getId('{{ post.youtube }}')
-                    $('#youtubeVideo' + id).html('<iframe width="300" height="115" src="//www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>')
+                    $('#youtubeVideo' + id).html('<iframe src="//www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen style="width:100%;"></iframe>')
                   }
                   //Calls the function above, inserts current Post's primary key as its argument
                   youtubeEmbedder('{{ post.pk }}')
@@ -87,12 +87,6 @@
           <i>{{ post.date }}</i>
         </div>
       </div>
-    {% endfor %}
-    <a id="older" href="">Older</a>
-    {% for post in posts %}
-    <script>
-      document.getElementById('older').setAttribute('href', '/older/' + i)
-    </script>
     {% endfor %}
   </div>
 {% include 'blog/_footer.html' %}
