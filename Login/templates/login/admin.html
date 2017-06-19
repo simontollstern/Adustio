@@ -20,13 +20,13 @@
   {% endfor %}
 </table>
 {% for post in posts %}
-  <form action="/admin/deletepost/{{ post.pk }}/" method="post">
-    {% csrf_token %}
-    <input type="submit" value="Delete post {{ post.pk }}" />
-  </form>
   <form action='/admin/editpost/{{ post.pk }}/' method="post">
     {% csrf_token %}
     <input type="submit" value="Edit post {{ post.pk }}" />
+  </form>
+  <form action="/admin/deletepost/{{ post.pk }}/" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Delete post {{ post.pk }}" />
   </form>
   <!--<a href="/accounts/deletepost?id={{ post.pk }}">Delete</a>
   <a href="/accounts/editpost?id={{ post.pk }}">Edit<a/></br>-->

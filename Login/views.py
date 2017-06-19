@@ -20,9 +20,9 @@ def login_auth(request):
     user = auth.authenticate(username=username, password=password)
     if user is not None:
         auth.login(request, user)
-        return HttpResponseRedirect('login/admin')
+        return HttpResponseRedirect('/admin')
     else:
-        return HttpResponseRedirect('login/invalid')
+        return HttpResponseRedirect('/invalid')
 
 # happens if the login isnt authenticated
 def invalid_login(request):
@@ -50,7 +50,7 @@ def addPost(request):
     if request.method == 'POST':
         form = AddPostForm(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect('login/admin/addpost')
+            return HttpResponseRedirect('admin/addpost')
     else:
         form = AddPostForm()
     return render(request, 'login/addpost.html', {'form': form})
@@ -65,7 +65,7 @@ def addPostAuth(request):
     date = request.POST.get('date', '')
     p = Post(title=title, text=text, youtube=youtube, soundcloud=soundcloud)
     p.save()
-    return HttpResponseRedirect('login/admin')
+    return HttpResponseRedirect('/admin')
 
 @login_required()
 def editPost(request, id):
@@ -73,7 +73,7 @@ def editPost(request, id):
     if request.method == 'POST':
         form = EditPostForm(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect('login/admin/editpost')
+            return HttpResponseRedirect('/admin/editpost')
     else:
         form = EditPostForm()
     return render(request, 'login/editpost.html', {
@@ -91,9 +91,9 @@ def editPostAuth(request, id):
     edited_obj = Post.objects.get(pk=id)
     p = Post(pk=id, title=title, text=text, youtube=youtube, soundcloud=soundcloud, date=edited_obj.date)
     p.save()
-    return HttpResponseRedirect('login/admin')
+    return HttpResponseRedirect('/admin')
 
 @login_required()
 def deletePostAuth(request, id):
     Post.objects.get(pk=id).delete()
-    return HttpResponseRedirect('login/admin')
+    return HttpResponseRedirect('/admin')
