@@ -1,5 +1,5 @@
 <!-- Template for displaying posts in their own URL -->
-  {% include '_header.html' %}
+  {% include 'blog/_header.html' %}
   <div class="container">
     {% for post in postDates %}
       <div class="row" style="margin-bottom:10px">
@@ -15,4 +15,4 @@
     {% endfor %}
     <p>{{ videos }}</p>
   </div>
-{% include '_footer.html' %}
+{% include 'blog/_footer.html' %}

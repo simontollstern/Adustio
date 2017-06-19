@@ -11,7 +11,7 @@ def index(request):
         if m.date.strftime("%B%y") not in months:
             months.append(m.date.strftime("%B%y"))
 
-    return render(request, 'index.html', {
+    return render(request, 'blog/index.html', {
         'posts': Post.objects.all().order_by('-date'),
         'months': months,
     })
@@ -22,23 +22,23 @@ def olderPosts(request, id):
 
 
 
-    return render(request, 'index.html', {
+    return render(request, 'blog/index.html', {
         'amount': objects_amount,
         'posts': objects,
     })
 
 # For viewing all posts from a specific year entered in the URL
 def post_year(request, year):
-    return render(request, 'post.html', {
+    return render(request, 'blog/post.html', {
         'postDates': Post.objects.filter(date__year=year).order_by('-date')
     })
 # For viewing all posts from a specific year and month entered in the URL
 def post_month(request, year, month):
-    return render(request, 'post.html', {
+    return render(request, 'blog/post.html', {
         'postDates': Post.objects.filter(date__year=year, date__month=month).order_by('-date')
     })
 # For viewing all posts from a specific year, month and date entered in the URL
 def post_day(request, year, month, day):
-    return render(request, 'post.html', {
+    return render(request, 'blog/post.html', {
         'postDates': Post.objects.filter(date__year=year, date__month=month, date__day=day).order_by('-date')
     })

@@ -11,7 +11,7 @@ from .forms import AddPostForm, EditPostForm
 def login(request):
     c = {}
     c.update(csrf(request))
-    return render(request, 'login.html', c)
+    return render(request, 'login/login.html', c)
 
 # authenticates the logins
 def login_auth(request):
@@ -20,18 +20,18 @@ def login_auth(request):
     user = auth.authenticate(username=username, password=password)
     if user is not None:
         auth.login(request, user)
-        return HttpResponseRedirect('/admin')
+        return HttpResponseRedirect('login/admin')
     else:
-        return HttpResponseRedirect('/invalid')
+        return HttpResponseRedirect('login/invalid')
 
 # happens if the login isnt authenticated
 def invalid_login(request):
-    return render(request, 'invalid_login.html')
+    return render(request, 'login/invalid_login.html')
 
 #Pages where you are required to be logged in to access them
 @login_required()
 def loggedin(request):
-    return render(request, 'admin.html', {
+    return render(request, 'login/admin.html', {
             'full_name': request.user.username,
             'posts': Post.objects.all().order_by("pk"),
         })
@@ -39,7 +39,7 @@ def loggedin(request):
 @login_required()
 def logout(request):
     auth.logout(request)
-    return render(request, 'logout.html')
+    return render(request, 'login/logout.html')
 
 #@login_required()
 #def admin(request):
@@ -50,10 +50,10 @@ def addPost(request):
     if request.method == 'POST':
         form = AddPostForm(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect('/admin/addpost')
+            return HttpResponseRedirect('login/admin/addpost')
     else:
         form = AddPostForm()
-    return render(request, 'addpost.html', {'form': form})
+    return render(request, 'login/addpost.html', {'form': form})
 
 # Saves the new post in the database after filling it with the data from the form in addpost.html which is retrieved through POST-requests and saved in separate strings
 @login_required()
@@ -65,7 +65,7 @@ def addPostAuth(request):
     date = request.POST.get('date', '')
     p = Post(title=title, text=text, youtube=youtube, soundcloud=soundcloud)
     p.save()
-    return HttpResponseRedirect('/admin')
+    return HttpResponseRedirect('login/admin')
 
 @login_required()
 def editPost(request, id):
@@ -73,10 +73,10 @@ def editPost(request, id):
     if request.method == 'POST':
         form = EditPostForm(request.POST)
         if form.is_valid():
-            return HttpResponseRedirect('/admin/editpost')
+            return HttpResponseRedirect('login/admin/editpost')
     else:
         form = EditPostForm()
-    return render(request, 'editpost.html', {
+    return render(request, 'login/editpost.html', {
         'form': form,
         'posts': post,
     })
@@ -91,9 +91,9 @@ def editPostAuth(request, id):
     edited_obj = Post.objects.get(pk=id)
     p = Post(pk=id, title=title, text=text, youtube=youtube, soundcloud=soundcloud, date=edited_obj.date)
     p.save()
-    return HttpResponseRedirect('/admin')
+    return HttpResponseRedirect('login/admin')
 
 @login_required()
 def deletePostAuth(request, id):
     Post.objects.get(pk=id).delete()
-    return HttpResponseRedirect('/admin')
+    return HttpResponseRedirect('login/admin')

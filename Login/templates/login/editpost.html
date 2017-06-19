@@ -1,5 +1,5 @@
 <!-- The page for editing posts -->
-{% include '_headerAdmin.html' %}
+{% include 'login/_header.html' %}
 
 {% block content %}
 {% for post in posts %}
@@ -34,5 +34,5 @@
 </script>
 {% endfor %}
 {% endblock %}
-{% include '_footerAdmin.html' %}
+{% include 'login/_footer.html' %}
 <p>{{ post.title }}</p><p>{{ post.text }}</p><p>{{ post.date }}</p>
