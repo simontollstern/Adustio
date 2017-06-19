@@ -1,11 +1,10 @@
 <!-- Currenlty not in use, after login the admin is redirected directly to adminpanel.html-->
-
-<!--{% include '_header.html' %}-->
+{% include '_headerAdmin.html' %}
 
 {% block content %}
 
   <h2>Hi {{full_name}} You are now logged in!</h2>
-  <p>Click <a href="/accounts/logout/">here</a> to logout.</p>
+  <p>Click <a href="/logout/">here</a> to logout.</p>
 
 {% endblock %}
-{% include '_footer.html' %}
+{% include '_footerAdmin.html' %}

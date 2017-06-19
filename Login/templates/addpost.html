@@ -1,13 +1,13 @@
 <!-- The page for adding posts -->
-<!--{% include '_header.html' %}-->
+{% include '_headerAdmin.html' %}
 
 {% block content %}
 
-<form action="/accounts/adminpanel/addpost/auth" method="post">
+<form action="/admin/addpost/auth" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit" />
 </form>
 
 {% endblock %}
-{% include '_footer.html' %}
+{% include '_footerAdmin.html' %}

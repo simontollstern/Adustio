@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from Blog.views import index
+from Blog.views import index, olderPosts
 
 urlpatterns = [
     url(r'^$', index, name='index'),
+    url(r'^older/(?P<id>[0-9]+)/$', olderPosts),
     url(r'^', include('Login.urls')),
     url(r'^', include('Blog.urls')),
 ]

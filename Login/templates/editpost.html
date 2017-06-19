@@ -1,12 +1,12 @@
 <!-- The page for editing posts -->
-{% include '_headerLogin.html' %}
+{% include '_headerAdmin.html' %}
 
 {% block content %}
 {% for post in posts %}
 
 <!--<p>{{ form.title.auto_id }}{{ form.text.auto_id }}</p>-->
 
-<form action="/accounts/adminpanel/editpost/auth/{{ post.pk }}/" method="post">
+<form action="/admin/editpost/auth/{{ post.pk }}/" method="post">
     <!-- Display the forms for editing an existing post-->
     {% csrf_token %}
     {{ form.title.label_tag }}{{ form.title }}
@@ -34,5 +34,5 @@
 </script>
 {% endfor %}
 {% endblock %}
-{% include '_footerLogin.html' %}
+{% include '_footerAdmin.html' %}
 <p>{{ post.title }}</p><p>{{ post.text }}</p><p>{{ post.date }}</p>

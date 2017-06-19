@@ -16,6 +16,17 @@ def index(request):
         'months': months,
     })
 
+def olderPosts(request, id):
+    objects = Post.objects.all().order_by('-date').exclude(pk=1)
+    objects_amount = Post.objects.all().count()
+
+
+
+    return render(request, 'index.html', {
+        'amount': objects_amount,
+        'posts': objects,
+    })
+
 # For viewing all posts from a specific year entered in the URL
 def post_year(request, year):
     return render(request, 'post.html', {

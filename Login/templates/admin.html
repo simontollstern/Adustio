@@ -20,19 +20,19 @@
   {% endfor %}
 </table>
 {% for post in posts %}
-  <form action="/accounts/adminpanel/deletepost/{{ post.pk }}/" method="post">
+  <form action="/admin/deletepost/{{ post.pk }}/" method="post">
     {% csrf_token %}
     <input type="submit" value="Delete post {{ post.pk }}" />
   </form>
-  <form action='/accounts/adminpanel/editpost/{{ post.pk }}/' method="post">
+  <form action='/admin/editpost/{{ post.pk }}/' method="post">
     {% csrf_token %}
     <input type="submit" value="Edit post {{ post.pk }}" />
   </form>
   <!--<a href="/accounts/deletepost?id={{ post.pk }}">Delete</a>
   <a href="/accounts/editpost?id={{ post.pk }}">Edit<a/></br>-->
 {% endfor %}
-<p><a href="/accounts/adminpanel/addpost/">Add Post</a></p>
-<p><a href="/accounts/logout/">Logout</a></p>
+<p><a href="/admin/addpost/">Add Post</a></p>
+<p><a href="/logout/">Logout</a></p>
 
 {% endblock %}
 {% include '_footerAdmin.html' %}

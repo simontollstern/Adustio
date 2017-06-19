@@ -1,5 +1,5 @@
 <!-- The page where admin logs in -->
-<!--{% include '_header.html' %}-->
+{% include '_headerAdmin.html' %}
 
 {% block content %}
 
@@ -7,7 +7,7 @@
     <p class="error">Sorry, thats not a valid username or password</p>
   {% endif %}
 
-  <form action="/accounts/auth/" method="post"> {% csrf_token %}
+  <form action="/auth/" method="post"> {% csrf_token %}
     <label for="username">User name:</label>
     <input type="text" name="username" value="" id="username">
     <label for="password">Password:</label>
@@ -17,4 +17,4 @@
   </form>
 
 {% endblock %}
-{% include '_footer.html' %}
+{% include '_footerAdmin.html' %}
