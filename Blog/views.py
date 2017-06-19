@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse
 from Blog.models import Post
 from datetime import datetime
 from django.utils import timezone
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 # Returns blog post data from the database as a string
@@ -11,20 +12,23 @@ def index(request):
         if m.date.strftime("%B%y") not in months:
             months.append(m.date.strftime("%B%y"))
 
+    post_list = Post.objects.all().order_by('-date')
+    paginator = Paginator(post_list, 5)
+
+    page =request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        # if page is not an integer, deliver first page
+        posts = paginator.page(1)
+    except EmptyPage:
+        # if page is out of range (e.g. 9999), deliver last page of results.
+        posts = paginator.page(paginator.num_pages)
+
     return render(request, 'blog/index.html', {
-        'posts': Post.objects.all().order_by('-date'),
+        #'posts': Post.objects.all().order_by('-date'),
+        'posts': posts,
         'months': months,
-    })
-
-def olderPosts(request, id):
-    objects = Post.objects.all().order_by('-date').exclude(pk=1)
-    objects_amount = Post.objects.all().count()
-
-
-
-    return render(request, 'blog/index.html', {
-        'amount': objects_amount,
-        'posts': objects,
     })
 
 # For viewing all posts from a specific year entered in the URL
