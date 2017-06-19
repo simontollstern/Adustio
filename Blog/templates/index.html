@@ -37,9 +37,9 @@
         <div class="col-sm-4 col-sm-offset-2" style="background-color:#ccc;height:200px;">
           <div id='youtubeVideo{{ post.pk }}'>
             <script id="youtubeEmbeddingScript">
-                // If post has a youtube video link in its database field, give it an ID
-                // to the function below and embed it
+                // If post has a youtube video link in its database field, give it an ID to the function below and embed it
                 if('{{ post.youtube }}'){
+                  //Takes the url and retreieves the so called Id
                   function getId(url) {
                     var regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/
                     var match = url.match(regExp)
@@ -49,27 +49,26 @@
                         return 'error'
                     }
                   }
+                  //Generates HTML code based on the Id from the getId()-function and then adds the HTML to the div surrounding this <script>
+                  //The id-argument tells the function exactly which <div> it should add the HTML-code to, since all this code is inside a forloop it needs a specific ID which is the Primary Key of the current Post-object.
                   function youtubeEmbedder(id) {
-                    var videoId = getId(url)
+                    var videoId = getId('{{ post.youtube }}')
                     $('#youtubeVideo' + id).html('<iframe width="300" height="115" src="//www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>')
                   }
-                  var url = '{{ post.youtube }}'
+                  //Calls the function above, inserts current Post's primary key as its argument
                   youtubeEmbedder('{{ post.pk }}')
-                }
-                else {
                 }
             </script>
           </div>
             <div class="soundcloud{{ post.pk }}">
               <script>
+              // Takes a soundcloud URL and embedds it
                 if('{{ post.soundcloud }}'){
                   function soundcloudEmbedder(id) {
                     $('.soundcloud' + id).attr('sc_url', '{{ post.soundcloud }}')
                     $('.soundcloud' + id).addClass('soundcloudEmbed')
                   }
                   soundcloudEmbedder('{{ post.pk }}')
-                }
-                else {
                 }
               </script>
             </div>

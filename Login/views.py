@@ -24,7 +24,7 @@ def login_auth(request):
     else:
         return HttpResponseRedirect('/accounts/invalid')
 
-# happens if login isnt authenticated
+# happens if the login isnt authenticated
 def invalid_login(request):
     return render(request, 'invalid_login.html')
 
@@ -55,6 +55,7 @@ def addPost(request):
         form = AddPostForm()
     return render(request, 'addpost.html', {'form': form})
 
+# Saves the new post in the database after filling it with the data from the form in addpost.html which is retrieved through POST-requests and saved in separate strings
 @login_required()
 def addPostAuth(request):
     title = request.POST.get('title', '')
@@ -80,6 +81,7 @@ def editPost(request, id):
         'posts': post,
     })
 
+# Saves the edited post in the database after filling it with the new data from the form in addpost.html which is retrieved through POST-requests and saved in separate strings. The key part of this function is saving it using the same Primary Key (pk), otherwise it would just add a new post with a new auto-incremented Primary Key like addPostAuth() does
 @login_required()
 def editPostAuth(request, id):
     title = request.POST.get('title', '')

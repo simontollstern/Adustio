@@ -1,11 +1,13 @@
+<!-- The page for editing posts -->
 {% include '_headerLogin.html' %}
 
 {% block content %}
 {% for post in posts %}
 
-<p>{{ form.title.auto_id }}{{ form.text.auto_id }}</p>
+<!--<p>{{ form.title.auto_id }}{{ form.text.auto_id }}</p>-->
 
 <form action="/accounts/adminpanel/editpost/auth/{{ post.pk }}/" method="post">
+    <!-- Display the forms for editing an existing post-->
     {% csrf_token %}
     {{ form.title.label_tag }}{{ form.title }}
     {{ form.text.label_tag }}{{ form.text }}
@@ -16,7 +18,7 @@
 
 <script>
   window.onload = function insertTitle() {
-    //Inserts the current title from the database into the input field
+    //Inserts the current value of each field from the database and puts it into the input element of each field
     var title = document.getElementById('id_title')
     title.value = '{{ post.title }}'
 
