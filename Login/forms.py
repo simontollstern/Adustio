@@ -7,6 +7,8 @@ class AddPostForm(forms.Form):
     text = forms.CharField(label='Text', max_length=15000)
     youtube = forms.CharField(label='Youtube-video (optional)', required=False)
     soundcloud = forms.CharField(label='Soundcloud track (optional)', required=False)
+    pinned = forms.BooleanField(label='Pin this post', required=False)
+
     #date = forms.DateTimeField(label='Date')
 
 class EditPostForm(forms.Form):
@@ -14,4 +16,5 @@ class EditPostForm(forms.Form):
     text = forms.CharField(label='Text', max_length=15000)
     youtube = forms.CharField(label='Youtube-video (optional)', required=False)
     soundcloud = forms.CharField(label='Soundcloud track (optional)', required=False)
+    pinned = forms.BooleanField(label='Pin this post', required=False)
     #date = forms.DateTimeField(label='Date')

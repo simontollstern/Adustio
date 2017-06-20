@@ -27,6 +27,7 @@ def index(request):
 
     return render(request, 'blog/index.html', {
         'posts': posts,
+        'pinnedPosts': Post.objects.filter(pinned=True).order_by('-date'),
         'months': months,
     })
 

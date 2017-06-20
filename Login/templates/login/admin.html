@@ -3,11 +3,14 @@
 
 {% block content %}
 
-<table style="border: 1px red solid" width="800px">
+<table style="border: 1px red solid" width="1200px">
   <tr>
     <th>ID</th>
     <th>Title</th>
     <th>Text</th>
+    <th>Pinned?</th>
+    <th>Youtube</th>
+    <th>Soundcloud</th>
     <th>Date</th>
   </tr>
   {% for post in posts %}
@@ -15,6 +18,9 @@
     <td>{{ post.pk }}</td>
     <td>{{ post.title }}</td>
     <td>{{ post.text }}</td>
+    <td>{{ post.pinned }}</td>
+    <td>{{ post.youtube }}</td>
+    <td>{{ post.soundcloud }}</td>
     <td>{{ post.date }}</td>
   </tr>
   {% endfor %}

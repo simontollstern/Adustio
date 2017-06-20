@@ -13,26 +13,31 @@
     {{ form.text.label_tag }}{{ form.text }}
     {{ form.youtube.label_tag }}{{ form.youtube }}
     {{ form.soundcloud.label_tag }}{{ form.soundcloud }}
+    {{ form.pinned.label_tag }}{{ form.pinned }}
     <input type="submit" value="Submit" />
 </form>
-
+{% endfor %}
+{% include 'login/_footer.html' %}
+{% for post in posts %}
 <script>
-  window.onload = function insertTitle() {
-    //Inserts the current value of each field from the database and puts it into the input element of each field
-    var title = document.getElementById('id_title')
-    title.value = '{{ post.title }}'
+window.onload = function insertExistingData() {
+  //Inserts the current value of each field from the database and puts it into the input element of each field
+  var title = document.getElementById('id_title')
+  title.value = '{{ post.title }}'
 
-    var text = document.getElementById('id_text')
-    text.value = '{{ post.text }}'
+  var text = document.getElementById('id_text')
+  text.value = '{{ post.text }}'
 
-    var youtube = document.getElementById('id_youtube')
-    youtube.value = '{{ post.youtube }}'
+  var youtube = document.getElementById('id_youtube')
+  youtube.value = '{{ post.youtube }}'
 
-    var soundcloud = document.getElementById('id_soundcloud')
-    soundcloud.value = '{{ post.soundcloud }}'
-  }
+  var soundcloud = document.getElementById('id_soundcloud')
+  soundcloud.value = '{{ post.soundcloud }}'
+
+  var pinned = document.getElementById('id_pinned')
+  var isTrueSet = ('{{ post.pinned }}' == 'True')
+  pinned.checked = isTrueSet
+}
 </script>
 {% endfor %}
 {% endblock %}
-{% include 'login/_footer.html' %}
-<p>{{ post.title }}</p><p>{{ post.text }}</p><p>{{ post.date }}</p>

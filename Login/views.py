@@ -62,8 +62,14 @@ def addPostAuth(request):
     text = request.POST.get('text', '')
     youtube = request.POST.get('youtube', '')
     soundcloud = request.POST.get('soundcloud', '')
+    pinned = False
+    try:
+        if request.POST['pinned']:
+            pinned = True
+    except:
+        pinned = False
     date = request.POST.get('date', '')
-    p = Post(title=title, text=text, youtube=youtube, soundcloud=soundcloud)
+    p = Post(title=title, text=text, youtube=youtube, soundcloud=soundcloud, pinned=pinned)
     p.save()
     return HttpResponseRedirect('/admin')
 
@@ -88,8 +94,15 @@ def editPostAuth(request, id):
     text = request.POST.get('text', '')
     youtube = request.POST.get('youtube', '')
     soundcloud = request.POST.get('soundcloud', '')
+    #pinned = False
+    try:
+        if request.POST['pinned']:
+            pinned = True
+    except:
+        pinned = False
+
     edited_obj = Post.objects.get(pk=id)
-    p = Post(pk=id, title=title, text=text, youtube=youtube, soundcloud=soundcloud, date=edited_obj.date)
+    p = Post(pk=id, title=title, text=text, youtube=youtube, soundcloud=soundcloud, pinned=pinned, date=edited_obj.date)
     p.save()
     return HttpResponseRedirect('/admin')
 
