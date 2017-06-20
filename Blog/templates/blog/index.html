@@ -74,6 +74,7 @@
   }
   // Takes a soundcloud URL and embedds it
   if('{{ post.soundcloud }}'){
+    //This little function applies the classes necessary for soundcloudEmbedder() to work
     function soundcloudEmbedder(id) {
       $('.soundcloud' + id).attr('sc_url', '{{ post.soundcloud }}')
       $('.soundcloud' + id).addClass('soundcloudEmbed')

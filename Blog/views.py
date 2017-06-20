@@ -13,7 +13,7 @@ def index(request):
             months.append(m.date.strftime("%B%y"))
 
     post_list = Post.objects.all().order_by('-date')
-    paginator = Paginator(post_list, 5)
+    paginator = Paginator(post_list, 5, orphans=1)
 
     page =request.GET.get('page')
     try:
@@ -26,7 +26,6 @@ def index(request):
         posts = paginator.page(paginator.num_pages)
 
     return render(request, 'blog/index.html', {
-        #'posts': Post.objects.all().order_by('-date'),
         'posts': posts,
         'months': months,
     })
@@ -34,15 +33,15 @@ def index(request):
 # For viewing all posts from a specific year entered in the URL
 def post_year(request, year):
     return render(request, 'blog/post.html', {
-        'postDates': Post.objects.filter(date__year=year).order_by('-date')
+        'posts': Post.objects.filter(date__year=year).order_by('-date')
     })
 # For viewing all posts from a specific year and month entered in the URL
 def post_month(request, year, month):
     return render(request, 'blog/post.html', {
-        'postDates': Post.objects.filter(date__year=year, date__month=month).order_by('-date')
+        'posts': Post.objects.filter(date__year=year, date__month=month).order_by('-date')
     })
 # For viewing all posts from a specific year, month and date entered in the URL
 def post_day(request, year, month, day):
     return render(request, 'blog/post.html', {
-        'postDates': Post.objects.filter(date__year=year, date__month=month, date__day=day).order_by('-date')
+        'posts': Post.objects.filter(date__year=year, date__month=month, date__day=day).order_by('-date')
     })
