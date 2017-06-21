@@ -44,3 +44,7 @@ function youtubeEmbedder(url, id, tag) {
   var videoId = getId(url)
   $(tag + id).html('<iframe src="//www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen style="width:100%;"></iframe>')
 }
+
+$(function(){
+  $('[id^=youtubeVideo]').height($('[id^=youtubeVideo]').width()*0.5625);
+});
