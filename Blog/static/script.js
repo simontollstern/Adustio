@@ -42,5 +42,5 @@ function getId(url) {
 //The id-argument tells the function exactly which <div> it should add the HTML-code to, since all this code is inside a forloop it needs a specific ID which is the Primary Key of the current Post-object.
 function youtubeEmbedder(url, id, tag) {
   var videoId = getId(url)
-  $(tag + id).html('<iframe width="300" height="115" src="//www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen></iframe>')
+  $(tag + id).html('<iframe src="//www.youtube.com/embed/' + videoId + '" frameborder="0" allowfullscreen style="width:100%;"></iframe>')
 }
