@@ -1,16 +1,19 @@
 {% include 'blog/_header.html' %}
   <div class="container">
     {% for post in pinnedPosts %}
-      <div class="row equal" style="margin-top:10px;margin-bottom:10px;">
+      <!--<div class="row equal" style="margin-top:10px;margin-bottom:10px;">
         <div class="col-sm-4 col-sm-offset-2" style="background-color:#ccc;">
+          <div id='youtubeVideo{{ post.pk }}'></div>
+          <div class="soundcloud{{ post.pk }}"></div>
         </div>
         <div class="col-sm-4">
           <h2>{{ post.title }}</h2>
           <p>{{ post.text }}</p>
           <p>{{ post.youtube }}</p>
+          <p>{{ post.soundcloud }}</p>
           <i>{{ post.date }}</i>
         </div>
-      </div>
+      </div>-->
     {% endfor %}
   </div>
   <div class="container-fluid about" style="margin-bottom:10px">
@@ -27,12 +30,8 @@
     {% for post in posts %}
       <div class="row equal" style="margin-bottom:10px">
         <div class="col-sm-4 col-sm-offset-2" style="background-color:#ccc;">
-          <div id='youtubeVideo{{ post.pk }}'>
-
-          </div>
-            <div class="soundcloud{{ post.pk }}">
-
-            </div>
+          <div id='youtubeVideo{{ post.pk }}'></div>
+          <div class="soundcloud{{ post.pk }}"></div>
         </div>
         <div class="col-sm-4">
           <h2>{{ post.title }}</h2>
@@ -60,20 +59,20 @@
 {% include 'blog/_footer.html' %}
 <!-- Script running area -->
 {% for post in posts %}
-<script>
-  // If post has a youtube video link in its database field, give it an ID to the function below and embed it
-  if('{{ post.youtube }}'){
-    //Calls the embedder function, inserts current Post's primary key as its argument
-    youtubeEmbedder('{{ post.youtube }}', '{{ post.pk }}', '#youtubeVideo');
-  }
-  // Takes a soundcloud URL and embedds it
-  if('{{ post.soundcloud }}'){
-    //This little function applies the classes necessary for soundcloudEmbedder() to work
-    function soundcloudEmbedder(id) {
-      $('.soundcloud' + id).attr('sc_url', '{{ post.soundcloud }}')
-      $('.soundcloud' + id).addClass('soundcloudEmbed')
+  <script>
+    // If post has a youtube video link in its database field, give it an ID to the function below and embed it
+    if('{{ post.youtube }}'){
+      //Calls the embedder function, inserts current Post's primary key as its argument
+      youtubeEmbedder('{{ post.youtube }}', '{{ post.pk }}', '#youtubeVideo');
     }
-    soundcloudEmbedder('{{ post.pk }}')
-  }
-</script>
+    // Takes a soundcloud URL and embedds it
+    if('{{ post.soundcloud }}'){
+      //This little function applies the classes necessary for soundcloudEmbedder() to work
+      function soundcloudEmbedder(id) {
+        $('.soundcloud' + id).attr('sc_url', '{{ post.soundcloud }}')
+        $('.soundcloud' + id).addClass('soundcloudEmbed')
+      }
+      soundcloudEmbedder('{{ post.pk }}')
+    }
+  </script>
 {% endfor %}
