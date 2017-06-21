@@ -1,12 +1,12 @@
 .banner{
-  background:url('images/blog/adustio-banner.jpg');
-  height: 300px;
+  /*background:url('images/blog/adustio-banner.jpg');*/
+  background-color: #eee;
+  height: 400px;
   background-position: center;
-  color: #fff;
 }
 
 .banner h1{
-  line-height: 300px;
+  line-height: 400px;
   text-align: center;
   margin: 0;
 }
